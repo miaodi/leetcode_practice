@@ -51,28 +51,37 @@ class Solution
   public:
     int combinationSum4(vector<int> &nums, int target)
     {
-        int res = 0;
-        helper(nums, target, 0, res);
-        return res;
-    }
-    void helper(vector<int> &nums, int target, int curr, int &res)
-    {
-        if (curr == target)
+        vector<unsigned int> dp(target + 1, 0);
+        dp[0] = 1;
+        for (int i = 1; i <= target; ++i)
         {
-            res++;
-            return;
-        }
-        else if (curr > target)
-        {
-            return;
-        }
-        else
-        {
-            for (auto i : nums)
+            for (auto a : nums)
             {
-                auto tmp = i + curr;
-                helper(nums, target, tmp, res);
+                if (i >= a)
+                    dp[i] += dp[i - a];
             }
         }
+        return dp.back();
     }
+    // DFS TML
+    // void helper(vector<int> &nums, int target, int curr, int &res)
+    // {
+    //     if (curr == target)
+    //     {
+    //         res++;
+    //         return;
+    //     }
+    //     else if (curr > target)
+    //     {
+    //         return;
+    //     }
+    //     else
+    //     {
+    //         for (auto i : nums)
+    //         {
+    //             auto tmp = i + curr;
+    //             helper(nums, target, tmp, res);
+    //         }
+    //     }
+    // }
 };
