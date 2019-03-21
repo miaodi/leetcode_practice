@@ -78,7 +78,7 @@ class Solution
             {
                 for (auto j : employees)
                 {
-                    if (j->id == i - 1)
+                    if (j->id == i )
                     {
                         res += j->importance;
                         tmp.insert(tmp.end(), (j->subordinates).begin(), (j->subordinates).end());
