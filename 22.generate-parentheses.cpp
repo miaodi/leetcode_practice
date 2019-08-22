@@ -39,21 +39,42 @@ class Solution
         helper(n, res, 0, 0, s);
         return res;
     }
-    void helper(int n, vector<string> &res, int l, int r, string &s)
+
+    void helper(int n, vector<string> &res, int l, int r, string &cur)
     {
         if (l + r == 2 * n)
         {
-            res.push_back(s);
+            res.push_back(cur);
         }
-        if (l < n)
+        else
         {
-            auto tmp = s + "(";
-            helper(n, res, l + 1, r, tmp);
-        }
-        if (r < l)
-        {
-            auto tmp = s + ")";
-            helper(n, res, l, r + 1, tmp);
+            if (l < n)
+            {
+                auto tmp = cur + '(';
+                helper(n, res, l + 1, r, tmp);
+            }
+            if (l > r)
+            {
+                auto tmp = cur + ')';
+                helper(n, res, l, r + 1, tmp);
+            }
         }
     }
+    // void helper(int n, vector<string> &res, int l, int r, string &s)
+    // {
+    //     if (l + r == 2 * n)
+    //     {
+    //         res.push_back(s);
+    //     }
+    //     if (l < n)
+    //     {
+    //         auto tmp = s + "(";
+    //         helper(n, res, l + 1, r, tmp);
+    //     }
+    //     if (r < l)
+    //     {
+    //         auto tmp = s + ")";
+    //         helper(n, res, l, r + 1, tmp);
+    //     }
+    // }
 };
