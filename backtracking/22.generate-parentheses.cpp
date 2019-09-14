@@ -31,50 +31,33 @@
  */
 class Solution
 {
-  public:
+public:
     vector<string> generateParenthesis(int n)
     {
         vector<string> res;
-        string s;
-        helper(n, res, 0, 0, s);
+        helper(n, res, 0, 0, "");
         return res;
     }
-
-    void helper(int n, vector<string> &res, int l, int r, string &cur)
+    void helper(int n, vector<string> &res, int l, int r, const string &s)
     {
-        if (l + r == 2 * n)
+        if (s.size() == 2 * n)
         {
-            res.push_back(cur);
+            res.emplace_back(s);
         }
         else
         {
             if (l < n)
             {
-                auto tmp = cur + '(';
+                auto tmp = s;
+                tmp += "(";
                 helper(n, res, l + 1, r, tmp);
             }
             if (l > r)
             {
-                auto tmp = cur + ')';
+                auto tmp = s;
+                tmp += ")";
                 helper(n, res, l, r + 1, tmp);
             }
         }
     }
-    // void helper(int n, vector<string> &res, int l, int r, string &s)
-    // {
-    //     if (l + r == 2 * n)
-    //     {
-    //         res.push_back(s);
-    //     }
-    //     if (l < n)
-    //     {
-    //         auto tmp = s + "(";
-    //         helper(n, res, l + 1, r, tmp);
-    //     }
-    //     if (r < l)
-    //     {
-    //         auto tmp = s + ")";
-    //         helper(n, res, l, r + 1, tmp);
-    //     }
-    // }
 };
